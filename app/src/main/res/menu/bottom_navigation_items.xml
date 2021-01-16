@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:id="@+id/india"
+        android:title="Indian"
+        android:icon="@drawable/ic_whatshot"/>
+
+    <item android:id="@+id/entertainment"
+        android:title="Entertainment"
+        android:icon="@drawable/ic_entertainment"/>
+
+    <item android:id="@+id/tech"
+        android:title="Tech"
+        android:icon="@drawable/ic_lightbulb"/>
+
+    <item android:id="@+id/BBC"
+        android:title="BBC"
+        android:icon="@drawable/ic_bbc"/>
+
+</menu>

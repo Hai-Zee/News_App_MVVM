@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/india">
+
+    <fragment
+        android:id="@+id/india"
+        android:name="com.example.newsappzeesh.view.fragments.India"
+        android:label="fragment_india"
+        tools:layout="@layout/fragment_india" />
+    <fragment
+        android:id="@+id/entertainment"
+        android:name="com.example.newsappzeesh.view.fragments.Entertainment"
+        android:label="fragment_entertainment"
+        tools:layout="@layout/fragment_entertainment" />
+    <fragment
+        android:id="@+id/tech"
+        android:name="com.example.newsappzeesh.view.fragments.Tech"
+        android:label="fragment_tech"
+        tools:layout="@layout/fragment_tech" />
+    <fragment
+        android:id="@+id/BBC"
+        android:name="com.example.newsappzeesh.view.fragments.BBC"
+        android:label="fragment_b_b_c"
+        tools:layout="@layout/fragment_bbc" />
+</navigation>
