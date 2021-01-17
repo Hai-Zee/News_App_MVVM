@@ -96,6 +96,7 @@ class MyAdapter(val myInterface: MyInterface) : RecyclerView.Adapter<MyAdapter.V
         return mList.size
     }
 
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var image: ImageView = itemView.findViewById(R.id.imageID)
@@ -107,7 +108,6 @@ class MyAdapter(val myInterface: MyInterface) : RecyclerView.Adapter<MyAdapter.V
         var shareButton: ImageButton = itemView.findViewById(R.id.shareButton)
 //        var shimmerFrameLayout : ShimmerFrameLayout = itemView.findViewById(R.id.shimmerEffectID)
 //        var constraintLayout : ConstraintLayout = itemView.findViewById(R.id.customViewConstraintID)
-
     }
 
     fun updateAdapter(list: List<Article>) {
