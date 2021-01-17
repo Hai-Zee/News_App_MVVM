@@ -13,10 +13,21 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
 
-        <!-- Customize your theme here. -->
-
         <!-- global font -->
         <item name="android:fontFamily">@font/open_sans_regular</item>
 
+    </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/activity_main_xml_color</item>
+        <item name="android:windowBackground">@drawable/splash_bg</item>
+        <item name="android:statusBarColor">@color/activity_main_xml_color</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="AppIntroTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/activity_main_xml_color</item>
+        <item name="android:statusBarColor">@color/activity_main_xml_color</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>

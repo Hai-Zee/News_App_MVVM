@@ -13,31 +13,31 @@
 
     <color name="cardViewBackgroundColor">#FFFFFFFF</color>
 
-<!--    title color-->
+    <!--    title color-->
     <color name="titleColor">#050505</color>
 
-<!--    Share Button-->
+    <!--    Share Button-->
     <color name="shareButton">#131313</color>
     <!--    Share Button Background-->
     <color name="shareButtonBackground">#FFFFFFFF</color>
 
-<!--   sun menu button-->
+    <!--   sun menu button-->
     <color name="sun_button1">#FF000000</color>
 
-<!--    main activity xml back color-->
+    <!--    main activity xml back color-->
     <color name="activity_main_xml_color">#FFFFFFFF</color>
 
-<!--    bottom nav view's icon color-->
+    <!--    bottom nav view's icon color-->
     <color name="icon_state_checked_true">#FF000000</color>
     <color name="time_source_color_false">#707070</color>
 
-<!--  bottom navigation view color  -->
+    <!--  bottom navigation view color  -->
     <color name="bottom_nav_view_color">#FFFFFFFF</color>
 
-<!--    ToolBar color-->
+    <!--    ToolBar color-->
     <color name="toolbar_background_color">#FFFFFFFF</color>
 
-<!-- App name color-->
+    <!-- App name color-->
     <color name="news_world_heading_color">#050505</color>
 
 </resources>
