@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
         android:fontFamily="@font/paytone_one"
-        android:text="Welcome to NewsLand"
+        android:text="Welcome to NewsWorld"
         android:textColor="@color/news_world_heading_color"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/lottieAnimationView"
