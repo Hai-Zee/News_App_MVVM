@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsappzeesh.modal.Article
 import com.example.newsappzeesh.my_adapter.MyAdapter
 import com.example.newsappzeesh.R
+import com.example.newsappzeesh.databinding.FragmentEntertainmentBinding
 import com.example.newsappzeesh.viewModel.ApiViewModel
 import com.facebook.shimmer.ShimmerFrameLayout
 
@@ -24,40 +25,37 @@ import com.facebook.shimmer.ShimmerFrameLayout
 class Entertainment : Fragment() {
 
     lateinit var mContext: Context
-    lateinit var mRecyclerView: RecyclerView
-    lateinit var shimmerFrameLayout: ShimmerFrameLayout
     lateinit var mAdapter: MyAdapter
     lateinit var clickListners: MyAdapter.MyInterface
     private lateinit var apiViewModel: ApiViewModel
+    private lateinit var fragmentEntertainmentBinding: FragmentEntertainmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_entertainment, container, false)
+        fragmentEntertainmentBinding = FragmentEntertainmentBinding.inflate(inflater, container, false)
+        return fragmentEntertainmentBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mRecyclerView = view.findViewById(R.id.entertainmentRecyclerID)
-        shimmerFrameLayout = view.findViewById(R.id.entertainmentShimmerEffectID)
-
         //   Implementing both methods of Inner Interface of Adapter..
         clickListners = object : MyAdapter.MyInterface {
-            override fun itemViewClickListner(newsData: Article) {
+            override fun itemViewClickListener(newsData: Article) {
 //                to open the URL in to chrome custom tab..
                 val builder = CustomTabsIntent.Builder()
                 val customTabsIntent = builder.build()
                 customTabsIntent.launchUrl(mContext, Uri.parse(newsData.newsUrl))
             }
 
-            override fun shareButtonClickListner(newsData: Article) {
-                var intent = Intent(Intent.ACTION_SEND).setType("text/plain")
+            override fun shareButtonClickListener(newsData: Article) {
+                val intent = Intent(Intent.ACTION_SEND).setType("text/plain")
                 intent.putExtra(Intent.EXTRA_TEXT, newsData.newsUrl)
 
-                var chooser: Intent = Intent.createChooser(intent, "Share with...")
+                val chooser: Intent = Intent.createChooser(intent, "Share with...")
                 startActivity(chooser)
             }
         }
@@ -70,13 +68,13 @@ class Entertainment : Fragment() {
         apiViewModel = ViewModelProvider(requireActivity()).get(ApiViewModel::class.java)
         apiViewModel.getEntertainment().observe(viewLifecycleOwner, Observer {
 
-            shimmerFrameLayout.stopShimmer()
-            shimmerFrameLayout.hideShimmer()
-            shimmerFrameLayout.visibility = View.GONE
+            fragmentEntertainmentBinding.entertainmentShimmerEffectID.stopShimmer()
+            fragmentEntertainmentBinding.entertainmentShimmerEffectID.hideShimmer()
+            fragmentEntertainmentBinding.entertainmentShimmerEffectID.visibility = View.GONE
 
-            mRecyclerView.visibility = View.VISIBLE
+            fragmentEntertainmentBinding.entertainmentRecyclerID.visibility = View.VISIBLE
             mAdapter.updateAdapter(it)
-            mRecyclerView.adapter = mAdapter
+            fragmentEntertainmentBinding.entertainmentRecyclerID.adapter = mAdapter
         })
     }
 
@@ -140,9 +138,8 @@ class Entertainment : Fragment() {
     private fun setupRecyclerview() {
         val linearLayoutManager = LinearLayoutManager(context)
         linearLayoutManager.orientation = RecyclerView.VERTICAL
-        mRecyclerView.layoutManager = linearLayoutManager
+        fragmentEntertainmentBinding.entertainmentRecyclerID.layoutManager = linearLayoutManager
         mAdapter = MyAdapter(clickListners)
     }
-
 }
 

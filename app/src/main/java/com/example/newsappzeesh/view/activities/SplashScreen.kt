@@ -16,16 +16,10 @@ class SplashScreen : AppCompatActivity() {
             getSharedPreferences("Intro_Screen", MODE_PRIVATE)
         val isIntroDone = sharedPreferences.getBoolean("isIntroDone", false)
 
-        Log.d("splash0", "onCreate: chali")
-
-        Log.d("splash1", "onCreate: $isIntroDone")
-
         if (isIntroDone) {
-            Log.d("splash2", "intent if $isIntroDone")
             startActivity(Intent(this@SplashScreen, MainActivity::class.java))
             finish()
         } else {
-            Log.d("splash3", "intent else: $isIntroDone")
             startActivity(Intent(this@SplashScreen, IntroActivity::class.java))
             finish()
         }

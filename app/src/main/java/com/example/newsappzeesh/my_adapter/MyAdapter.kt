@@ -2,7 +2,6 @@ package com.example.newsappzeesh.my_adapter
 
 import android.graphics.drawable.Drawable
 import android.text.format.DateUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -19,7 +17,6 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.newsappzeesh.modal.Article
 import com.example.newsappzeesh.R
-import com.facebook.shimmer.ShimmerFrameLayout
 import java.text.SimpleDateFormat
 
 class MyAdapter(val myInterface: MyInterface) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
@@ -29,7 +26,7 @@ class MyAdapter(val myInterface: MyInterface) : RecyclerView.Adapter<MyAdapter.V
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyAdapter.ViewHolder {
 
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.custom_view, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.custom_view, parent, false)
         return ViewHolder(view)
     }
 
@@ -83,11 +80,11 @@ class MyAdapter(val myInterface: MyInterface) : RecyclerView.Adapter<MyAdapter.V
 
 
         holder.itemView.setOnClickListener(View.OnClickListener {
-            myInterface.itemViewClickListner(data)
+            myInterface.itemViewClickListener(data)
         })
 
         holder.shareButton.setOnClickListener {
-            myInterface.shareButtonClickListner(data)
+            myInterface.shareButtonClickListener(data)
         }
 
     }
@@ -113,13 +110,12 @@ class MyAdapter(val myInterface: MyInterface) : RecyclerView.Adapter<MyAdapter.V
     fun updateAdapter(list: List<Article>) {
         mList.clear()
         mList.addAll(list)
-        Log.d("adapter1", "updateAdapter: $mList")
         notifyDataSetChanged()
     }
 
     interface MyInterface {
-        fun itemViewClickListner(newsData: Article)
-        fun shareButtonClickListner(newsData: Article)
+        fun itemViewClickListener(newsData: Article)
+        fun shareButtonClickListener(newsData: Article)
     }
 }
 

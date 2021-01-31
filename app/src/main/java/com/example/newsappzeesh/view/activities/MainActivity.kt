@@ -4,6 +4,7 @@ import android.content.IntentFilter
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -18,47 +19,36 @@ import androidx.navigation.ui.NavigationUI
 import com.airbnb.lottie.LottieAnimationView
 import com.example.newsappzeesh.broadcast.MyReceiver
 import com.example.newsappzeesh.R
+import com.example.newsappzeesh.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity(), MyReceiver.ConnectivityInterface {
 
-    lateinit var mToolBar : Toolbar
-    lateinit var navController: NavController
-    lateinit var mBottomNavigationView : BottomNavigationView
-    lateinit var connectionErrorText : TextView
-    lateinit var lottieAnim : LottieAnimationView
+    private lateinit var navController: NavController
 //    lateinit var frameLayoutContainer: FrameLayout
-    lateinit var relativeLayout : RelativeLayout
-    lateinit var myReceiver: MyReceiver
-    lateinit var nightModeSharedPreferences : SharedPreferences
-    lateinit var editor : SharedPreferences.Editor
-    var nightModeKeyValue : Boolean = false
+    private lateinit var myReceiver: MyReceiver
+    private lateinit var nightModeSharedPreferences : SharedPreferences
+    private lateinit var editor : SharedPreferences.Editor
+    private var nightModeKeyValue : Boolean = false
+    private lateinit var activityMainBinding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        checkNightMode()
-
-        mToolBar = findViewById(R.id.toolbarID)
-        mBottomNavigationView = findViewById(R.id.bottomNavBarID)
-        relativeLayout = findViewById(R.id.relativeLayout)
-        lottieAnim = findViewById(R.id.lottieAnimID)
-        connectionErrorText = findViewById(R.id.connection_error_text_id)
-
-        navController = Navigation.findNavController(this, R.id.nav_host_fragID)
-        NavigationUI.setupWithNavController(mBottomNavigationView, navController)
+        activityMainBinding = ActivityMainBinding.inflate(LayoutInflater.from(this))
+        setContentView(activityMainBinding.root)
 
         myReceiver = MyReceiver()
-
-        setSupportActionBar(mToolBar)
+        setSupportActionBar(activityMainBinding.toolbarID)
         supportActionBar?.setDisplayShowTitleEnabled(false)
         supportActionBar?.title = null
 
+        checkNightMode()
+
+        navController = Navigation.findNavController(this, R.id.nav_host_fragID)
+        NavigationUI.setupWithNavController(activityMainBinding.bottomNavBarID, navController)
 //        mBottomNavigationView.setOnNavigationItemSelectedListener(this)
 //        mBottomNavigationView.selectedItemId = R.id.news_India
-
     }
 
 //    override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -96,15 +86,15 @@ class MainActivity : AppCompatActivity(), MyReceiver.ConnectivityInterface {
 
     override fun connectivity(isConnected : Boolean) {
         if(isConnected){
-            lottieAnim.visibility = View.GONE
-            connectionErrorText.visibility = View.GONE
+            activityMainBinding.lottieAnimID.visibility = View.GONE
+            activityMainBinding.connectionErrorTextId.visibility = View.GONE
 //            frameLayoutContainer.visibility = view.VISIBLE
-            relativeLayout.visibility = View.VISIBLE
+            activityMainBinding.relativeLayout.visibility = View.VISIBLE
         }
         else{
-            relativeLayout.visibility = View.GONE
-            lottieAnim.visibility = View.VISIBLE
-            connectionErrorText.visibility = View.VISIBLE
+            activityMainBinding.relativeLayout.visibility = View.GONE
+            activityMainBinding.lottieAnimID.visibility = View.VISIBLE
+            activityMainBinding.connectionErrorTextId.visibility = View.VISIBLE
 //            frameLayoutContainer.visibility = view.GONE
         }
     }

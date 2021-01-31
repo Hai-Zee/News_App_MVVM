@@ -22,7 +22,6 @@ interface ApiInterface {
         @Query("apiKey") apiKey: String
     ): Api
 
-
     //    Entertainment news
 //    https://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=730a60dec330429c8fc1a2d3eeec28fd
     @GET("/v2/top-headlines")

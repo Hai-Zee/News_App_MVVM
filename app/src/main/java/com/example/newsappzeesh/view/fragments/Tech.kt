@@ -16,46 +16,44 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsappzeesh.modal.Article
 import com.example.newsappzeesh.my_adapter.MyAdapter
 import com.example.newsappzeesh.R
+import com.example.newsappzeesh.databinding.FragmentTechBinding
 import com.example.newsappzeesh.viewModel.ApiViewModel
 import com.facebook.shimmer.ShimmerFrameLayout
 
 class Tech : Fragment() {
 
-    lateinit var mContext: Context
-    lateinit var mRecyclerView: RecyclerView
-    lateinit var shimmerFrameLayout: ShimmerFrameLayout
-    lateinit var mAdapter: MyAdapter
-    lateinit var clickListners: MyAdapter.MyInterface
+    private lateinit var mContext: Context
+    private lateinit var mAdapter: MyAdapter
+    private lateinit var clickListners: MyAdapter.MyInterface
     private lateinit var apiViewModel: ApiViewModel
+    private lateinit var fragmentTechBinding: FragmentTechBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tech, container, false)
+        fragmentTechBinding = FragmentTechBinding.inflate(inflater, container, false)
+        return fragmentTechBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mRecyclerView = view.findViewById(R.id.techRecyclerID)
-        shimmerFrameLayout = view.findViewById(R.id.techShimmerEffectID)
-
         //   Implementing both methods of Inner Interface of Adapter..
         clickListners = object : MyAdapter.MyInterface {
-            override fun itemViewClickListner(newsData: Article) {
+            override fun itemViewClickListener(newsData: Article) {
 //                to open the URL in to chrome custom tab..
                 val builder = CustomTabsIntent.Builder()
                 val customTabsIntent = builder.build()
                 customTabsIntent.launchUrl(mContext, Uri.parse(newsData.newsUrl))
             }
 
-            override fun shareButtonClickListner(newsData: Article) {
-                var intent = Intent(Intent.ACTION_SEND).setType("text/plain")
+            override fun shareButtonClickListener(newsData: Article) {
+                val intent = Intent(Intent.ACTION_SEND).setType("text/plain")
                 intent.putExtra(Intent.EXTRA_TEXT, newsData.newsUrl)
 
-                var chooser: Intent = Intent.createChooser(intent, "Share with...")
+                val chooser: Intent = Intent.createChooser(intent, "Share with...")
                 startActivity(chooser)
             }
         }
@@ -67,14 +65,14 @@ class Tech : Fragment() {
         apiViewModel = ViewModelProvider(requireActivity()).get(ApiViewModel::class.java)
         apiViewModel.getTechNews().observe(viewLifecycleOwner, Observer {
 
-            shimmerFrameLayout.stopShimmer()
-            shimmerFrameLayout.hideShimmer()
-            shimmerFrameLayout.visibility = View.GONE
+            fragmentTechBinding.techShimmerEffectID.stopShimmer()
+            fragmentTechBinding.techShimmerEffectID.hideShimmer()
+            fragmentTechBinding.techShimmerEffectID.visibility = View.GONE
 
-            mRecyclerView.visibility = View.VISIBLE
+            fragmentTechBinding.techRecyclerID.visibility = View.VISIBLE
 
             mAdapter.updateAdapter(it)
-            mRecyclerView.adapter = mAdapter
+            fragmentTechBinding.techRecyclerID.adapter = mAdapter
         })
     }
 
@@ -137,7 +135,7 @@ class Tech : Fragment() {
     private fun setupRecyclerview() {
         val linearLayoutManager = LinearLayoutManager(context)
         linearLayoutManager.orientation = RecyclerView.VERTICAL
-        mRecyclerView.layoutManager = linearLayoutManager
+        fragmentTechBinding.techRecyclerID.layoutManager = linearLayoutManager
         mAdapter = MyAdapter(clickListners)
     }
 }
