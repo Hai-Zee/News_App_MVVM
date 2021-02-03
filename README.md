@@ -1,6 +1,6 @@
 # NewsWorld
 
-**It's an Android News App having nice user interface, user can see news under four different catagories**
+**It's an Android News App having nice user interface, user can see news under four different catagories.**
 
 ***It's develped in MVVM Architecture***
 
