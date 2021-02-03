@@ -8,8 +8,8 @@
 - **Retrofit for API calls (used NewsApi.org)**
 - **Jetpack Navigation**
 - **Developed in Kotlin**
-- **Broadcast Reciever**
 - **Shimmer Effect & Lottie Animations**
+- **Broadcast Reciever**
 - **Attractive UI (Material Design)**
 
 
