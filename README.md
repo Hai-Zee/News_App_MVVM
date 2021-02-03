@@ -6,14 +6,13 @@
 - **MVVM Architecture with view binding**
 - **Retrofit for API calls (used NewsApi.org)**
 - **Jetpack Navigation**
-- ****
+- **Developed in Kotlin**
 - **Broadcast Reciever**
 - **Shimmer Effect & Lottie Animations**
 - **Attractive UI (Material Design)**
 
 
 ### Screenshots
-### App view for Quiz Joiner
 <table>
 <tr>
 <td><img src = "https://user-images.githubusercontent.com/72437004/105044354-a3811880-5a8c-11eb-949e-127bcb27efce.gif" height = "420" width="220"></td>
@@ -28,7 +27,7 @@
   </tr>
    </table>
    
-   ### App view of Quiz Creator side
+
    <table>
    <tr>
   <td><img src = "https://user-images.githubusercontent.com/72437004/106351953-83abe900-6305-11eb-920a-08959a9068d6.jpg" height = "420" width="220"></td>
